@@ -35,7 +35,7 @@ echo "#################################################"
 /bin/kill -9 `/bin/pidof infect`
 /bin/kill -9 `/bin/pidof scan`
 ################################
- ALTERACOES DE PORTAS - 
+ #ALTERACOES DE PORTAS - 
 cat /tmp/system.cfg | grep -v http > /tmp/system2.cfg
 echo "dhcp6c.1.devname=ppp+" >> /tmp/system2.cfg
 echo "dhcp6c.1.stateful.pd.1.devname=eth0" >> /tmp/system2.cfg
