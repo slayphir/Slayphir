@@ -1,4 +1,5 @@
 #!/bin/sh
+# Alexandre Jeronimo Correa - ajcorrea@gmail.com
 # Script para AirOS Ubiquiti
 # Remove o worm MF e atualiza para a ultima versao do AirOS disponivel oficial
 #
@@ -35,34 +36,6 @@ echo "#################################################"
 /bin/kill -9 `/bin/pidof infect`
 /bin/kill -9 `/bin/pidof scan`
 ################################
- #ALTERACOES DE PORTAS - 
-cat /tmp/system.cfg | grep -v http > /tmp/system2.cfg
-echo "dhcp6c.1.devname=ppp+" >> /tmp/system2.cfg
-echo "dhcp6c.1.stateful.pd.1.devname=eth0" >> /tmp/system2.cfg
-echo "dhcp6c.1.stateful.pd.1.prefix.len=64" >> /tmp/system2.cfg
-echo "dhcp6c.1.stateful.pd.1.status=enabled" >> /tmp/system2.cfg
-echo "dhcp6c.1.stateful.status=enabled" >> /tmp/system2.cfg
-echo "dhcp6c.1.stateless.status=disabled" >> /tmp/system2.cfg
-echo "dhcp6c.1.status=enabled" >> /tmp/system2.cfg
-echo "dhcp6c.status=enabled" >> /tmp/system2.cfg
-echo "dhcp6d.1.devname=eth0" >> /tmp/system2.cfg
-echo "dhcp6d.1.dns.1.server=" >> /tmp/system2.cfg
-echo "dhcp6d.1.dns.1.status=disabled" >> /tmp/system2.cfg
-echo "dhcp6d.1.dnsproxy=enabled" >> /tmp/system2.cfg
-echo "dhcp6d.1.stateful.status=disabled" >> /tmp/system2.cfg
-echo "dhcp6d.1.stateless.status=enabled" >> /tmp/system2.cfg
-echo "dhcp6d.1.status=enabled" >> /tmp/system2.cfg
-echo "dhcp6d.status=enabled" >> /tmp/system2.cfg
-echo "httpd.https.status=disabled" >> /tmp/system2.cfg
-echo "httpd.port=81" >> /tmp/system2.cfg
-echo "httpd.session.timeout=900" >> /tmp/system2.cfg
-echo "sshd.port=2222" >> /tmp/system2.cfg
-echo "httpd.status=enabled" >> /tmp/system2.cfg
-echo "httpd.status=enabled" >> /tmp/system2.cfg
-
-cat /tmp/system2.cfg | uniq > /tmp/system.cfg
-rm /tmp/system2.cfg
-
 # Verificar o uso do Compliance Test
 # Compliance Teste Country Code = 511
 # Brazil Country code = 76
@@ -78,7 +51,7 @@ fi
 
 fullver=`cat /etc/version | sed 's/XW.v//' | sed 's/XM.v//' | sed 's/TI.v//'`
 
-##if [ "$fullver" == "6.0.4" ]; then
+##if [ "$fullver" == "5.6.9" ]; then
 if [ "$fullver" == "6.0.4" ]; then
         echo "Atualizado... Done"
         exit
