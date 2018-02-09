@@ -39,20 +39,10 @@ echo "#################################################"
 # Verificar o uso do Compliance Test
 # Compliance Teste Country Code = 511
 # Brazil Country code = 76
-CCATUAL=$(iwpriv wifi0 getCountryID |  sed 's/wifi0     getCountryID://')
-if [ $CCATUAL -eq '511' ]; then
-        touch /etc/persistent/ct
-        /bin/sed -ir '/radio.1.countrycode/ c radio.1.countrycode=511' /tmp/system.cfg
-        /bin/sed -ir '/radio.countrycode/ c radio.countrycode=511' /tmp/system.cfg
-fi
-
-#Salva modificacoes...
-/bin/cfgmtd -w -p /etc/
-
 fullver=`cat /etc/version | sed 's/XW.v//' | sed 's/XM.v//' | sed 's/TI.v//'`
 
 ##if [ "$fullver" == "5.6.9" ]; then
-if [ "$fullver" == "6.0.4" ]; then
+if [ "$fullver" == "6.1.4" ]; then
         echo "Atualizado... Done"
         exit
 fi
@@ -65,14 +55,13 @@ rm -rf /tmp/T*.bin
 
 if [ "$versao" == "XM" ]; then
         #URL='http://dl.ubnt.com/firmwares/XN-fw/v5.6.6/XM.v5.6.6.29183.160526.1225.bin'        
-	URL='https://dl.ubnt.com/firmwares/XN-fw/v6.0.4/XM.v6.0.4.30805.170505.1525.bin'
+	URL='https://dl.ubnt.com/firmwares/XN-fw/v6.1.4/XM.v6.1.4.32113.180112.0932.bin'
 fi
 if [ "$versao" == "XW" ]; then
         #URL='http://dl.ubnt.com/firmwares/XW-fw/v5.6.6/XW.v5.6.6.29183.160526.1205.bin'
-	URL='https://dl.ubnt.com/firmwares/XW-fw/v6.0.4/XW.v6.0.4.30805.170505.1510.bin'
+	URL='https://dl.ubnt.com/firmwares/XW-fw/v6.1.4/XW.v6.1.4.32113.180112.0918.bin'
 fi
 if [ "$versao" == "TI" ]; then
-        #URL='http://dl.ubnt.com/firmwares/XN-fw/v5.6.6/TI.v5.6.6.29183.160526.1144.bin'
 	URL='http://dl.ubnt.com/firmwares/XN-fw/v5.6.9/TI.v5.6.9.29546.160819.1135.bin'
 fi
 
