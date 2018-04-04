@@ -39,10 +39,11 @@ echo "#################################################"
 # Verificar o uso do Compliance Test
 # Compliance Teste Country Code = 511
 # Brazil Country code = 76
+
 fullver=`cat /etc/version | sed 's/XW.v//' | sed 's/XM.v//' | sed 's/TI.v//'`
 
 ##if [ "$fullver" == "5.6.9" ]; then
-if [ "$fullver" == "6.1.4" ]; then
+if [ "$fullver" == "6.1.6" ]; then
         echo "Atualizado... Done"
         exit
 fi
@@ -55,11 +56,11 @@ rm -rf /tmp/T*.bin
 
 if [ "$versao" == "XM" ]; then
         #URL='http://dl.ubnt.com/firmwares/XN-fw/v5.6.6/XM.v5.6.6.29183.160526.1225.bin'        
-	URL='https://dl.ubnt.com/firmwares/XN-fw/v6.1.4/XM.v6.1.4.32113.180112.0932.bin'
+	URL='https://dl.ubnt.com/firmwares/XN-fw/v6.1.6/XM.v6.1.6.32290.180307.1650.bin'
 fi
 if [ "$versao" == "XW" ]; then
         #URL='http://dl.ubnt.com/firmwares/XW-fw/v5.6.6/XW.v5.6.6.29183.160526.1205.bin'
-	URL='https://dl.ubnt.com/firmwares/XW-fw/v6.1.4/XW.v6.1.4.32113.180112.0918.bin'
+	 URL='http://dl.ubnt.com/firmwares/XW-fw/v5.6.6/XW.v5.6.6.29183.160526.1205.bin'
 fi
 if [ "$versao" == "TI" ]; then
 	URL='http://dl.ubnt.com/firmwares/XN-fw/v5.6.9/TI.v5.6.9.29546.160819.1135.bin'
