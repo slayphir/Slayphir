@@ -1,33 +1,4 @@
-
-Skip to content
-This repository
-
-    Pull requests
-    Issues
-    Marketplace
-    Explore
-
-    @slayphir
-
-8
-5
-
-    7
-
-ajcorrea/cleanmf
-Code
-Issues 0
-Pull requests 0
-Projects 0
-Wiki
-Insights
-cleanmf/cleanmfv5.sh
-54a984e on 19 Nov 2016
-@ajcorrea ajcorrea Updated 5.6.6 to 5.6.9
-@ajcorrea
-@diegocanton
-93 lines (80 sloc) 3.03 KB
-#!/bin/sh
+# !/bin/sh
 # Alexandre Jeronimo Correa - ajcorrea@gmail.com
 # Script para AirOS Ubiquiti
 # Remove o worm MF e atualiza para a ultima versao do AirOS disponivel oficial
@@ -81,7 +52,7 @@ fi
 fullver=`cat /etc/version | sed 's/XW.v//' | sed 's/XM.v//' | sed 's/TI.v//'`
 
 ##if [ "$fullver" == "5.6.6" ]; then
-if [ "$fullver" == "5.6.9" ]; then
+if [ "$fullver" == "6.1.6" ]; then
         echo "Atualizado... Done"
         exit
 fi
