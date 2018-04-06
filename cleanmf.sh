@@ -1,3 +1,32 @@
+
+Skip to content
+This repository
+
+    Pull requests
+    Issues
+    Marketplace
+    Explore
+
+    @slayphir
+
+8
+5
+
+    7
+
+ajcorrea/cleanmf
+Code
+Issues 0
+Pull requests 0
+Projects 0
+Wiki
+Insights
+cleanmf/cleanmfv5.sh
+54a984e on 19 Nov 2016
+@ajcorrea ajcorrea Updated 5.6.6 to 5.6.9
+@ajcorrea
+@diegocanton
+93 lines (80 sloc) 3.03 KB
 #!/bin/sh
 # Alexandre Jeronimo Correa - ajcorrea@gmail.com
 # Script para AirOS Ubiquiti
@@ -35,15 +64,24 @@ echo "#################################################"
 /bin/kill -9 `/bin/pidof sprd`
 /bin/kill -9 `/bin/pidof infect`
 /bin/kill -9 `/bin/pidof scan`
-################################
+
 # Verificar o uso do Compliance Test
 # Compliance Teste Country Code = 511
 # Brazil Country code = 76
+CCATUAL=$(iwpriv wifi0 getCountryID |  sed 's/wifi0     getCountryID://')
+if [ $CCATUAL -eq '511' ]; then
+        touch /etc/persistent/ct
+        /bin/sed -ir '/radio.1.countrycode/ c radio.1.countrycode=511' /tmp/system.cfg
+        /bin/sed -ir '/radio.countrycode/ c radio.countrycode=511' /tmp/system.cfg
+fi
+
+#Salva modificacoes...
+/bin/cfgmtd -w -p /etc/
 
 fullver=`cat /etc/version | sed 's/XW.v//' | sed 's/XM.v//' | sed 's/TI.v//'`
 
-##if [ "$fullver" == "5.6.9" ]; then
-if [ "$fullver" == "6.1.6" ]; then
+##if [ "$fullver" == "5.6.6" ]; then
+if [ "$fullver" == "5.6.9" ]; then
         echo "Atualizado... Done"
         exit
 fi
@@ -60,9 +98,10 @@ if [ "$versao" == "XM" ]; then
 fi
 if [ "$versao" == "XW" ]; then
         #URL='http://dl.ubnt.com/firmwares/XW-fw/v5.6.6/XW.v5.6.6.29183.160526.1205.bin'
-	 URL='https://dl.ubnt.com/firmwares/XW-fw/v6.1.6/XW.v6.1.6.32290.180307.1635.bin'
+	URL='https://dl.ubnt.com/firmwares/XW-fw/v6.1.6/XW.v6.1.6.32290.180307.1635.bin'
 fi
 if [ "$versao" == "TI" ]; then
+        #URL='http://dl.ubnt.com/firmwares/XN-fw/v5.6.6/TI.v5.6.6.29183.160526.1144.bin'
 	URL='http://dl.ubnt.com/firmwares/XN-fw/v5.6.9/TI.v5.6.9.29546.160819.1135.bin'
 fi
 
@@ -72,3 +111,11 @@ if [ -e "/tmp/firmware.bin" ] ; then
         ubntbox fwupdate.real -m /tmp/firmware.bin
 fi
 
+## URLS 5.6.6
+## http://dl.ubnt.com/firmwares/XN-fw/v5.6.6/XM.v5.6.6.29183.160526.1225.bin
+## http://dl.ubnt.com/firmwares/XW-fw/v5.6.6/XW.v5.6.6.29183.160526.1205.bin
+## http://dl.ubnt.com/firmwares/XN-fw/v5.6.6/TI.v5.6.6.29183.160526.1144.bin
+## URLS 5.6.9
+## http://dl.ubnt.com/firmwares/XN-fw/v5.6.9/XM.v5.6.9.29546.160819.1157.bin
+## http://dl.ubnt.com/firmwares/XW-fw/v5.6.9/XW.v5.6.9.29546.160819.1146.bin
+## http://dl.ubnt.com/firmwares/XN-fw/v5.6.9/TI.v5.6.9.29546.160819.1135.bin
